@@ -1,2 +1,4 @@
-# talleresFront
-Prueba Tecnica de Front End para Talleres
+1. Instalar dependencias
+npm install
+2. Iniciar el proyecto
+npm start
