@@ -62,7 +62,7 @@ export const handleGetAllOptions = async () => {
 export const handleDisableOption = async (id) => {
   try {
     const parsedFormData = {
-      ...id,
+      id,
     };
 
     const response = await fetch(API_ENDPOINT_OPTIONS, {

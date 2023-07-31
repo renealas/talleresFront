@@ -1,0 +1,24 @@
+/* Sidebar.css */
+.sidebar {
+  transition: width 0.3s ease;
+  /* Add any other styles for the sidebar container */
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar .toggle-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+
+/* Styles for the active link */
+.list-menu li.active {
+  background-color: #007bff; /* Set the desired background color for the active link */
+  color: #fff; /* Set the desired text color for the active link */
+  /* Add any other styles for the active link here */
+}

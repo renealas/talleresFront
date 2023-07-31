@@ -6,7 +6,7 @@ import Pagination from "./Pagination";
 const MovieForm = () => {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
+  const [itemsPerPage] = useState(10);
   const [filterYear, setFilterYear] = useState(""); // State for the selected year filter
 
   useEffect(() => {
@@ -66,9 +66,9 @@ const MovieForm = () => {
           </select>
         </div>
         {/* Table */}
-        <table className="table table-bordered">
-          <thead className="thead-dark">
-            <tr className="bg-primary">
+        <table className="table table-striped">
+          <thead>
+            <tr className="table-primary">
               <th>Nombre</th>
               <th>Presupuesto</th>
               <th>Fecha Lanzamiento</th>
@@ -76,21 +76,32 @@ const MovieForm = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredMovies.map((movie) => (
-              <tr key={movie.id}>
-                <td>{movie.name}</td>
-                <td>{formatCurrency(movie.budget)}</td>
-                <td>{new Date(movie.date).toLocaleDateString()}</td>
-                <td>{movie.duration} minutos</td>
-              </tr>
-            ))}
+            {filterYear
+              ? filteredMovies.map((movie) => (
+                  <tr key={movie.id}>
+                    <td>{movie.name}</td>
+                    <td>{formatCurrency(movie.budget)}</td>
+                    <td>{new Date(movie.date).toLocaleDateString()}</td>
+                    <td>{movie.duration} minutos</td>
+                  </tr>
+                ))
+              : currentMovies.map((movie) => (
+                  <tr key={movie.id}>
+                    <td>{movie.name}</td>
+                    <td>{formatCurrency(movie.budget)}</td>
+                    <td>{new Date(movie.date).toLocaleDateString()}</td>
+                    <td>{movie.duration} minutos</td>
+                  </tr>
+                ))}
           </tbody>
         </table>
-        <Pagination
-          itemsPerPage={itemsPerPage}
-          totalItems={filteredMovies.length}
-          paginate={paginate}
-        />
+        {!filterYear && (
+          <Pagination
+            itemsPerPage={itemsPerPage}
+            totalItems={currentMovies.length}
+            paginate={paginate}
+          />
+        )}
       </div>
     </div>
   );
